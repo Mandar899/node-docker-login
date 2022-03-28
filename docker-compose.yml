@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  node-app:
+    build: .
+    ports:
+      - 8080:8080
+    environment:
+      - MONGODB_URI=mongodb://db/nodeLogin
+
+  db:
+    image: mongo:4.0-xenial
+    ports:
+      - 27017:27017
+    volumes:
+      - nodeLogin:/data/db
+
+volumes:
+  nodeLogin:
